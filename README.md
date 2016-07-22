@@ -16,7 +16,9 @@ npm i -D webpack \
          eslint-plugin-jsx-a11y \
          eslint-plugin-react
 ```
-         
-         
-         
+               
+```
+npm i -S react \
+         react-dom
+```      
          
