@@ -10,6 +10,7 @@ npm i -D webpack \
          babel-preset-stage-0 \
          css-loader \
          style-loader \
+         json-loader \
          eslint \
          eslint-config-airbnb \
          eslint-plugin-import \

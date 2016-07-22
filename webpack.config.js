@@ -17,15 +17,15 @@ const config = {
     },
 
     output: {
-        path: BUILD_PATH,
-        filename: '[name].js',
+        path:       BUILD_PATH,
+        filename:   '[name].js',
         publicPath: '/asset/'
     },
 
     devServer: {
         historyApiFallback: true,
 
-        hot: true,
+        hot:    true,
         inline: true,
 
         stats: 'errors-only',
@@ -43,12 +43,16 @@ const config = {
     module: {
         loaders: [
             {
-                test: /\.jsx?/,
+                test:    /\.jsx?/,
                 loaders: ['babel'],
                 include: SRC_PATH
             }, {
-                test: /\.css/,
+                test:    /\.css/,
                 loaders: ['style', 'css'],
+                include: SRC_PATH
+            }, {
+                test:    /\.json/,
+                loaders: ['json'],
                 include: SRC_PATH
             }
         ]
