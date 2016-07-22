@@ -56,6 +56,14 @@
         "react/jsx-first-prop-new-line": [2, "never"],
         "react/jsx-max-props-per-line": [2, { "maximum": 1 }],
         "radix": [2, "as-needed"],
-        "strict": 0
+        "strict": 0,
+        "key-spacing": [2, {
+            "align": {
+                "beforeColon": false,
+                "afterColon": true,
+                "on": "value"
+            },
+            "mode": "minimum"
+        }]
     }
 }
