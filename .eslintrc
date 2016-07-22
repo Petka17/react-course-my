@@ -1,0 +1,61 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "blockBindings": true,
+            "jsx": true
+        }
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "mocha": true,
+        "es6": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "no-console": 0,
+        "no-underscore-dangle": 1,
+        "quotes": [
+            2,
+            "single"
+        ],
+        "indent": [
+            2,
+            4,
+            { "SwitchCase": 1 }
+        ],
+        "comma-dangle": 0,
+        "no-confusing-arrow": [
+            "error",
+            {
+                "allowParens": false
+            }
+        ],
+        "no-multi-spaces": [
+            "error",
+            {
+                "exceptions": {
+                    "VariableDeclarator": true,
+                    "ImportDeclaration": true
+                }
+            }
+        ],
+        "curly": [2, "multi-or-nest"],
+        "no-trailing-spaces": [1, { "skipBlankLines": true }],
+        "react/jsx-indent-props": [0, 4],
+        "react/jsx-indent": [2, 4],
+        "react/jsx-first-prop-new-line": [2, "never"],
+        "react/jsx-max-props-per-line": [2, { "maximum": 1 }],
+        "radix": [2, "as-needed"],
+        "strict": 0
+    }
+}
