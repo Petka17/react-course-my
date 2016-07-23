@@ -1,12 +1,15 @@
 import { EventEmitter } from 'events';
 
+import DataWrapper from './DataWrapper';
+
 export default class SimpleStore extends EventEmitter {
-    constructor(initialData) {
+    constructor(initialData, stores) {
         super();
 
         this.bindThisToMethods();
 
         this.__items = {};
+        this.__stores = stores;
 
         if (initialData) initialData.forEach(this.__add);
     }
@@ -23,6 +26,10 @@ export default class SimpleStore extends EventEmitter {
         this.removeListner('CHANGE', callback);
     }
 
+    getStore(relation) {
+        return this.__stores[relation];
+    }
+
     getAll() {
         return Object.keys(this.__items).map(this.getById);
     }
@@ -32,7 +39,7 @@ export default class SimpleStore extends EventEmitter {
     }
 
     __add(item) {
-        this.__items[item.id] = item;
+        this.__items[item.id] = new DataWrapper(item, this);
     }
 
     __delete(id) {
@@ -44,6 +51,7 @@ export default class SimpleStore extends EventEmitter {
         this.addChangeListner = this.addChangeListner.bind(this);
         this.removeChangeListner = this.removeChangeListner.bind(this);
 
+        this.getStore = this.getStore.bind(this);
         this.getAll = this.getAll.bind(this);
         this.getById = this.getById.bind(this);
 

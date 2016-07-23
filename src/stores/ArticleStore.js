@@ -4,8 +4,8 @@ import { AppDispatcher }  from '../dispatcher';
 import { DELETE_ARTICLE } from '../constants';
 
 export default class ArticleStore extends SimpleStore {
-    constructor(initialData) {
-        super(initialData);
+    constructor(initialData, stores) {
+        super(initialData, stores);
 
         AppDispatcher.register(({ type, payload }) => {
             switch (type) {

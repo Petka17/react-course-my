@@ -17,6 +17,7 @@ const ArticleList = ({
             {articles.map(article =>
                 <li key={article.id}>
                     <Article {...article}
+                             comments={article.getRelation('comments')}
                              isOpen={article.id === selectedItemId}
                              toggleOpen={() => selectItem(article.id)}
                              deleteArticle={deleteArticleFactory(article.id)}

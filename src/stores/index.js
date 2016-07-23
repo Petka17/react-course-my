@@ -1,5 +1,14 @@
+import SimpleStore  from './SimpleStore';
 import ArticleStore from './ArticleStore';
 
-import { articles } from '../fixtures';
+import { articles, comments } from '../fixtures';
 
-export const articleStore = new ArticleStore(articles);
+const stores = {};
+
+Object.assign(stores, {
+    articles: new ArticleStore(articles, stores),
+    comments: new SimpleStore(comments, stores)
+});
+
+export const articleStore = stores.articles;
+
