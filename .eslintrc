@@ -22,8 +22,8 @@
         "react"
     ],
     "rules": {
-        "no-console": 0,
-        "no-underscore-dangle": 1,
+        "no-console": 1,
+        "no-underscore-dangle": [1, { "allowAfterThis": true }],
         "quotes": [
             2,
             "single"

@@ -20,6 +20,9 @@ npm i -D webpack \
                
 ```
 npm i -S react \
-         react-dom
+         react-dom \
+         flux \
+         events
+         
 ```      
          

@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 
-import Article from './Article';
-import applySingleOpen from '../HOC/SingleOpen';
+import Article             from '../Article';
+import applyConnectToStore from './ConnectToStore';
+import applySingleOpen     from '../../HOC/SingleOpen';
 
 const ArticleList = ({
     articles,
+    deleteArticleFactory,
     selectedItemId,
     selectItem
 }) => (
@@ -15,6 +17,7 @@ const ArticleList = ({
                     <Article {...article}
                              isOpen={article.id === selectedItemId}
                              toggleOpen={() => selectItem(article.id)}
+                             deleteArticle={deleteArticleFactory(article.id)}
                     />
                 </li>
             )}
@@ -30,8 +33,9 @@ ArticleList.propTypes = {
             text:  PropTypes.string.isRequired
         })
     ),
-    selectedItemId: PropTypes.string,
-    selectItem:     PropTypes.func.isRequired
+    deleteArticleFactory: PropTypes.func.isRequired,
+    selectedItemId:       PropTypes.string,
+    selectItem:           PropTypes.func.isRequired
 };
 
-export default applySingleOpen(ArticleList);
+export default applyConnectToStore(applySingleOpen(ArticleList));
