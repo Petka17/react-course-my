@@ -8,10 +8,11 @@ export default (ReactComponent) =>
         constructor(props) {
             super(props);
 
-            this.updateState = this.updateState.bind(this);
+            this.bindThisToMethods();
 
             this.state = {
-                articles: articleStore.getAll()
+                articles:     articleStore.getAll(),
+                selectedList: {}
             };
         }
 
@@ -30,7 +31,15 @@ export default (ReactComponent) =>
                                 deleteArticleFactory={(id) => (ev) => {
                                     ev.preventDefault();
                                     deleteArticle(id);
+
+                                    if (this.state.selectedList[id])
+                                        this.selectArticle(id);
                                 }}
+                                selectArticleFactory={(id) => (ev) => {
+                                    ev.preventDefault();
+                                    this.selectArticle(id);
+                                }}
+                                selectedList={this.state.selectedList}
                 />
             );
         }
@@ -39,5 +48,23 @@ export default (ReactComponent) =>
             this.setState({
                 articles: articleStore.getAll()
             });
+        }
+
+        selectArticle(id) {
+            const { selectedList } = this.state;
+
+            if (selectedList[id])
+                delete selectedList[id];
+            else
+                selectedList[id] = true;
+
+            this.setState({
+                selectedList
+            });
+        }
+
+        bindThisToMethods() {
+            this.updateState = this.updateState.bind(this);
+            this.selectArticle = this.selectArticle.bind(this);
         }
     };

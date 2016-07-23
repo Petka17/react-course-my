@@ -7,6 +7,8 @@ import applySingleOpen     from '../../HOC/SingleOpen';
 const ArticleList = ({
     articles,
     deleteArticleFactory,
+    selectArticleFactory,
+    selectedList,
     selectedItemId,
     selectItem
 }) => (
@@ -18,6 +20,8 @@ const ArticleList = ({
                              isOpen={article.id === selectedItemId}
                              toggleOpen={() => selectItem(article.id)}
                              deleteArticle={deleteArticleFactory(article.id)}
+                             selectArticle={selectArticleFactory(article.id)}
+                             isSelected={selectedList[article.id] === true}
                     />
                 </li>
             )}
@@ -34,6 +38,8 @@ ArticleList.propTypes = {
         })
     ),
     deleteArticleFactory: PropTypes.func.isRequired,
+    selectArticleFactory: PropTypes.func.isRequired,
+    selectedList:         PropTypes.object.isRequired,
     selectedItemId:       PropTypes.string,
     selectItem:           PropTypes.func.isRequired
 };
