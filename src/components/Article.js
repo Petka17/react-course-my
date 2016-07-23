@@ -2,8 +2,6 @@ import React, { PropTypes } from 'react';
 
 import CommentList from './CommentList';
 
-import applyToggleOpen from '../HOC/ToggleOpen';
-
 const Article = ({
     title,
     text,
@@ -28,4 +26,4 @@ Article.propTypes = {
     toggleOpen: PropTypes.func.isRequired
 };
 
-export default applyToggleOpen(Article);
+export default Article;
