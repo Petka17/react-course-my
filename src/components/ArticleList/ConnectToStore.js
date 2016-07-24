@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 import { articleStore } from '../../stores';
-import { deleteArticle } from '../../actions';
+import {
+    deleteArticle,
+    addCommentToArticle
+} from '../../actions';
 
 export default (ReactComponent) =>
     class ArticleListContainer extends Component {
@@ -28,17 +31,18 @@ export default (ReactComponent) =>
             return (
                 <ReactComponent {...this.props}
                                 articles={this.state.articles}
-                                deleteArticleFactory={(id) => (ev) => {
-                                    ev.preventDefault();
+                                deleteArticleFactory={(id) => () => {
                                     deleteArticle(id);
 
                                     if (this.state.selectedList[id])
                                         this.selectArticle(id);
                                 }}
-                                selectArticleFactory={(id) => (ev) => {
-                                    ev.preventDefault();
-                                    this.selectArticle(id);
-                                }}
+                                selectArticleFactory={(id) => () =>
+                                    this.selectArticle(id)
+                                }
+                                addCommentFactory={(id) => (text) =>
+                                    addCommentToArticle(id, text)
+                                }
                                 selectedList={this.state.selectedList}
                 />
             );

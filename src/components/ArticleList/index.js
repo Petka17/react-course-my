@@ -8,6 +8,7 @@ const ArticleList = ({
     articles,
     deleteArticleFactory,
     selectArticleFactory,
+    addCommentFactory,
     selectedList,
     selectedItemId,
     selectItem
@@ -22,6 +23,7 @@ const ArticleList = ({
                              toggleOpen={() => selectItem(article.id)}
                              deleteArticle={deleteArticleFactory(article.id)}
                              selectArticle={selectArticleFactory(article.id)}
+                             addComment={addCommentFactory(article.id)}
                              isSelected={!!selectedList[article.id]}
                     />
                 </li>
@@ -40,6 +42,7 @@ ArticleList.propTypes = {
     ),
     deleteArticleFactory: PropTypes.func.isRequired,
     selectArticleFactory: PropTypes.func.isRequired,
+    addCommentFactory:    PropTypes.func.isRequired,
     selectedList:         PropTypes.object.isRequired,
     selectedItemId:       PropTypes.string,
     selectItem:           PropTypes.func.isRequired

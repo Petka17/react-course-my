@@ -6,6 +6,7 @@ const Article = ({
     title,
     text,
     deleteArticle,
+    addComment,
     selectArticle,
     isSelected,
     comments,
@@ -20,20 +21,28 @@ const Article = ({
         </h3>
 
         <a href="#"
-           onClick={selectArticle}
+           onClick={(ev) => {
+               ev.preventDefault();
+               selectArticle();
+           }}
         >
             Select
         </a>
         &nbsp;|&nbsp;
         <a href="#"
-           onClick={deleteArticle}
+           onClick={(ev) => {
+               ev.preventDefault();
+               deleteArticle();
+           }}
         >
             Delete
         </a>
 
         <div hidden={!isOpen} >
             <section>{text}</section>
-            <CommentList comments={comments} />
+            <CommentList comments={comments}
+                         addComment={addComment}
+            />
         </div>
     </div>
 );
@@ -42,6 +51,7 @@ Article.propTypes = {
     title:         PropTypes.string.isRequired,
     text:          PropTypes.string.isRequired,
     deleteArticle: PropTypes.func.isRequired,
+    addComment:    PropTypes.func.isRequired,
     selectArticle: PropTypes.func.isRequired,
     isSelected:    PropTypes.bool.isRequired,
     comments:      PropTypes.array.isRequired,
