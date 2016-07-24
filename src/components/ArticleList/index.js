@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import Article             from '../Article';
+import Article             from './Article';
 import applyConnectToStore from './ConnectToStore';
 import applySingleOpen     from '../../HOC/SingleOpen';
 
@@ -22,7 +22,7 @@ const ArticleList = ({
                              toggleOpen={() => selectItem(article.id)}
                              deleteArticle={deleteArticleFactory(article.id)}
                              selectArticle={selectArticleFactory(article.id)}
-                             isSelected={selectedList[article.id] === true}
+                             isSelected={!!selectedList[article.id]}
                     />
                 </li>
             )}

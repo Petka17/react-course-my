@@ -12,7 +12,8 @@ export default (ReactComponent) =>
             this.toggleOpen = this.toggleOpen.bind(this);
         }
 
-        toggleOpen() {
+        toggleOpen(ev) {
+            ev.preventDefault();
             this.setState({
                 isOpen: !this.state.isOpen
             });

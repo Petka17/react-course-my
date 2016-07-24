@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import applyToggleOpen from '../HOC/ToggleOpen';
+import applyToggleOpen from '../../HOC/ToggleOpen';
 
 const CommentList = ({
     comments,

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import CommentList from './CommentList';
+import CommentList from '../CommentList';
 
 const Article = ({
     title,
