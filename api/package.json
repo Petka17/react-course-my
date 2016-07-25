@@ -1,0 +1,17 @@
+{
+  "name": "simple_api",
+  "version": "0.0.1",
+  "description": "core",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "morgan": "^1.7.0",
+    "object-assign": "4.0.1"
+  },
+  "scripts": {
+    "start": "supervisor server.js"
+  },
+  "devDependencies": {
+    "supervisor": "^0.11.0"
+  }
+}

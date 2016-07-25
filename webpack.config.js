@@ -9,6 +9,9 @@ const BUILD_PATH = path.join(__dirname, 'dist');
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || '8080';
 
+const API_PROXY_PATH   = '/api/*';
+const API_PROXY_TARGET = 'http://localhost:8081';
+
 const config = {
     devtool: 'eval-source-map',
 
@@ -31,7 +34,12 @@ const config = {
         stats: 'errors-only',
 
         host: HOST,
-        port: PORT
+        port: PORT,
+
+        proxy: [{
+            path:   API_PROXY_PATH,
+            target: API_PROXY_TARGET
+        }],
     },
 
     plugins: [
