@@ -49,7 +49,7 @@ const Article = ({
 
 Article.propTypes = {
     title:         PropTypes.string.isRequired,
-    text:          PropTypes.string.isRequired,
+    text:          PropTypes.string,
     deleteArticle: PropTypes.func.isRequired,
     addComment:    PropTypes.func.isRequired,
     selectArticle: PropTypes.func.isRequired,

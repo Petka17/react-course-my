@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
+import async from 'async';
+
 import { articleStore } from '../../stores';
 import {
+    loadAllArticles,
     deleteArticle,
+    loadAllComments,
     addCommentToArticle
 } from '../../actions';
 
@@ -21,6 +25,11 @@ export default (ReactComponent) =>
 
         componentDidMount() {
             articleStore.addChangeListner(this.updateState);
+
+            async.series([
+                loadAllComments,
+                loadAllArticles
+            ]);
         }
 
         componentWillUnmount() {

@@ -35,16 +35,16 @@ const ArticleList = ({
 ArticleList.propTypes = {
     articles: PropTypes.arrayOf(
         PropTypes.shape({
-            id:    PropTypes.string.isRequired,
+            id:    PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
-            text:  PropTypes.string.isRequired
+            text:  PropTypes.string
         })
     ),
     deleteArticleFactory: PropTypes.func.isRequired,
     selectArticleFactory: PropTypes.func.isRequired,
     addCommentFactory:    PropTypes.func.isRequired,
     selectedList:         PropTypes.object.isRequired,
-    selectedItemId:       PropTypes.string,
+    selectedItemId:       PropTypes.number,
     selectItem:           PropTypes.func.isRequired
 };
 

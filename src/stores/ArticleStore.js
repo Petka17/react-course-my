@@ -3,7 +3,9 @@ import SimpleStore from './SimpleStore';
 import { AppDispatcher }  from '../dispatcher';
 import {
     DELETE_ARTICLE,
-    ADD_COMMENT
+    ADD_COMMENT,
+    LOAD_ALL_ARTICLES,
+    SUCCESS
 } from '../constants';
 
 export default class ArticleStore extends SimpleStore {
@@ -14,17 +16,23 @@ export default class ArticleStore extends SimpleStore {
             switch (type) {
                 case DELETE_ARTICLE:
                     this.__delete(payload.id);
-                    this.__emitChange();
                     break;
+
                 case ADD_COMMENT:
                     this.getById(payload.articleId)
                         .comments
                         .unshift(payload.comment.id);
-                    this.__emitChange();
                     break;
+
+                case LOAD_ALL_ARTICLES + SUCCESS:
+                    payload.response.forEach(this.__add);
+                    break;
+
                 default:
-                    break;
+                    return;
             }
+
+            this.__emitChange();
         });
     }
 }
