@@ -5,6 +5,7 @@ import async from 'async';
 import { articleStore } from '../../stores';
 import {
     loadAllArticles,
+    loadArticleById,
     deleteArticle,
     loadAllComments,
     addCommentToArticle
@@ -27,8 +28,8 @@ export default (ReactComponent) =>
             articleStore.addChangeListner(this.updateState);
 
             async.series([
-                loadAllComments,
-                loadAllArticles
+                loadAllComments(),
+                loadAllArticles()
             ]);
         }
 
@@ -53,6 +54,14 @@ export default (ReactComponent) =>
                                     addCommentToArticle(id, text)
                                 }
                                 selectedList={this.state.selectedList}
+                                processOpen={(id) => {
+                                    if (!articleStore.getById(id).text) {
+                                        async.series([
+                                            loadArticleById({ id })
+                                        ]);
+                                    }
+                                }}
+                                loading={articleStore.loading}
                 />
             );
         }

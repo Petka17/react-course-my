@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
 
-import Article             from './Article';
-import applyConnectToStore from './ConnectToStore';
-import applySingleOpen     from '../../HOC/SingleOpen';
+import Article          from './Article';
+import applyArticleList from './ArticleListContainer';
+import applySingleOpen  from '../../HOC/SingleOpen';
 
 const ArticleList = ({
     articles,
+    loading,
     deleteArticleFactory,
     selectArticleFactory,
     addCommentFactory,
@@ -14,6 +15,9 @@ const ArticleList = ({
     selectItem
 }) => (
     <div>
+        <div hidden={!loading}>
+            <h2>Loading...</h2>
+        </div>
         <ul>
             {articles.map(article =>
                 <li key={article.id}>
@@ -40,6 +44,7 @@ ArticleList.propTypes = {
             text:  PropTypes.string
         })
     ),
+    loading:              PropTypes.bool,
     deleteArticleFactory: PropTypes.func.isRequired,
     selectArticleFactory: PropTypes.func.isRequired,
     addCommentFactory:    PropTypes.func.isRequired,
@@ -48,4 +53,4 @@ ArticleList.propTypes = {
     selectItem:           PropTypes.func.isRequired
 };
 
-export default applyConnectToStore(applySingleOpen(ArticleList));
+export default applyArticleList(applySingleOpen(ArticleList));

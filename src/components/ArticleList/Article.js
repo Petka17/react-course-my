@@ -5,6 +5,7 @@ import CommentList from '../CommentList';
 const Article = ({
     title,
     text,
+    loading,
     deleteArticle,
     addComment,
     selectArticle,
@@ -39,6 +40,9 @@ const Article = ({
         </a>
 
         <div hidden={!isOpen} >
+            <div hidden={!loading}>
+                <h3>Loading...</h3>
+            </div>
             <section>{text}</section>
             <CommentList comments={comments}
                          addComment={addComment}
@@ -50,6 +54,7 @@ const Article = ({
 Article.propTypes = {
     title:         PropTypes.string.isRequired,
     text:          PropTypes.string,
+    loading:       PropTypes.bool,
     deleteArticle: PropTypes.func.isRequired,
     addComment:    PropTypes.func.isRequired,
     selectArticle: PropTypes.func.isRequired,

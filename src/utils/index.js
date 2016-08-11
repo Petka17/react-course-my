@@ -1,25 +1,31 @@
+import { dispatch } from '../dispatcher';
+
 import { START, SUCCESS, FAIL } from '../constants';
 
-export const asyncApiAction = (dispatch, apiAction, type) => (callback) => {
-    dispatch({
-        type: type + START
-    });
-
-    apiAction()
-        .done(response => {
+export const asyncApiAction = (apiAction, type) =>
+    (data) =>
+        (callback) => {
             dispatch({
-                type:    type + SUCCESS,
-                payload: { response }
+                type:    type + START,
+                payload: { data }
             });
 
-            callback(null, null);
-        })
-        .fail(error => {
-            dispatch({
-                type:    type + FAIL,
-                payload: { error }
-            });
+            apiAction(data)
+                .done(response => {
+                    dispatch({
+                        type:    type + SUCCESS,
+                        payload: { response, data }
+                    });
 
-            callback(error);
-        });
-};
+                    callback(null, null);
+                })
+                .fail(error => {
+                    dispatch({
+                        type:    type + FAIL,
+                        payload: { error, data }
+                    });
+
+                    callback(error);
+                });
+        };
+

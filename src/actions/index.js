@@ -1,17 +1,20 @@
-import { AppDispatcher } from '../dispatcher';
+import { dispatch } from '../dispatcher';
 import { asyncApiAction } from '../utils';
 
-import { getArticles } from './api/articles';
+import {
+    getArticles,
+    getArticleById
+} from './api/articles';
+
 import { getComments } from './api/comments';
 
 import {
     LOAD_ALL_ARTICLES,
+    LOAD_ARTICLE_BY_ID,
     DELETE_ARTICLE,
     LOAD_ALL_COMMENTS,
     ADD_COMMENT
 } from '../constants';
-
-const dispatch = AppDispatcher.dispatch.bind(AppDispatcher);
 
 export const deleteArticle = (id) => {
     dispatch({
@@ -33,17 +36,20 @@ export const addCommentToArticle = (articleId, text) => {
     });
 };
 
+export const loadAllArticles =
+    asyncApiAction(
+        getArticles,
+        LOAD_ALL_ARTICLES
+    );
+
+export const loadArticleById =
+    asyncApiAction(
+        getArticleById,
+        LOAD_ARTICLE_BY_ID
+    );
 
 export const loadAllComments =
     asyncApiAction(
-        dispatch,
         getComments,
         LOAD_ALL_COMMENTS
-    );
-
-export const loadAllArticles =
-    asyncApiAction(
-        dispatch,
-        getArticles,
-        LOAD_ALL_ARTICLES
     );

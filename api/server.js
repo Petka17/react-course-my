@@ -10,6 +10,7 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use((req, res, next) => setTimeout(next, 1000));
 app.use('/api', api);
 
 app.listen(PORT, 'localhost', (err) => {

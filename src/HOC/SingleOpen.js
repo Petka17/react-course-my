@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default (ReactComponent) =>
+export default (ReactComponent) => {
     class SingleOpen extends Component {
         constructor(props) {
             super(props);
@@ -16,6 +16,9 @@ export default (ReactComponent) =>
             this.setState({
                 selectedItemId: this.state.selectedItemId === id ? null : id
             });
+
+            if (this.state.selectedItemId !== id)
+                this.props.processOpen(id);
         }
 
         render() {
@@ -26,4 +29,11 @@ export default (ReactComponent) =>
                 />
             );
         }
+    }
+
+    SingleOpen.propTypes = {
+        processOpen: PropTypes.func
     };
+
+    return SingleOpen;
+};
